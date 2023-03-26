@@ -1,0 +1,38 @@
+{
+	"parserOptions": {
+		"ecmaVersion": "latest",
+		"sourceType": "module" // Allows the use of simple-import-sort
+	},
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"plugins": ["react", "simple-import-sort"],
+	"extends": [
+		"plugin:@typescript-eslint/recommended",
+		"plugin:react/recommended",
+		"plugin:react-hooks/recommended",
+		"prettier"
+	],
+	"rules": {
+		"no-console": "warn",
+		"react/react-in-jsx-scope": "off", // no longer needed thanks to new JSX Transforms
+		"simple-import-sort/imports": [
+			"warn",
+			{
+				// https://github.com/lydell/eslint-plugin-simple-import-sort#custom-grouping
+				"groups": [
+					["^\\u0000"], // Side effect imports eg: import 'side-effect'
+					["^node:"], // node-related if any
+					["^react", "^", "^@/"], // put `react` related at the top of this group, put aliases i.e. `@/` - at the bottom and all the rest in between
+					["^\\.", ".+\\.module\\.(scss|sass|css)$"] // general relative imports (among them, styles all the way bottom)
+				]
+			}
+		],
+		"simple-import-sort/exports": "warn",
+		"react/jsx-curly-brace-presence": [
+			"warn",
+			{ "props": "never", "children": "never", "propElementValues": "always" }
+		]
+	}
+}
