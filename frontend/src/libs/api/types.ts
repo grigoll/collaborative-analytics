@@ -1,26 +1,20 @@
-import {
-	ChartCommentThread,
-	ChartDataCountry,
-	ChartDataFeature,
-	ChartDataPoint,
-} from '@/types/chart';
+import { ChartComment, ChartCommentThread, ChartDataItem, ChartDataPoint } from '@/types/chart';
 
-type ChartDataResponseItem = { country: ChartDataCountry } & { [key in ChartDataFeature]: number };
-export type ChartDataResponse = ChartDataResponseItem[];
+export type ChartDataResponse = ChartDataItem[];
 
 export type ChartCommentThreadsResponse = ChartCommentThread[];
 
 export type ChartCommentThreadResponse = ChartCommentThread & {
-	comments: Comment[];
+	comments: ChartComment[];
 };
 
 export type CreateCommentThreadRequestData = {
-	comment: Comment;
-	data_point: ChartDataPoint;
+	comment: ChartComment;
+	dataPoint: ChartDataPoint;
 };
 
 export type RespondToCommentThreadRequestData = {
-	comment: Comment;
+	comment: ChartComment;
 };
 
 export type ChartShareResponse = {

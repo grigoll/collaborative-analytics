@@ -1,6 +1,5 @@
 import { HttpClient } from '../http/client.interface';
 import { ChartApiClient } from './chart-client.interface';
-import { CreateCommentThreadRequestData, RespondToCommentThreadRequestData } from './types';
 
 export class ChartApiClientImpl implements ChartApiClient {
 	constructor(private http: HttpClient) {}
@@ -13,14 +12,10 @@ export class ChartApiClientImpl implements ChartApiClient {
 	getCommentThread: ChartApiClient['getCommentThread'] = (threadId) =>
 		this.http.get(`/chart/comment_threads/${threadId}`);
 
-	createCommentThread: ChartApiClient['createCommentThread'] = (
-		data: CreateCommentThreadRequestData,
-	) => this.http.post('/chart/comment_threads', { data });
+	createCommentThread: ChartApiClient['createCommentThread'] = (data) =>
+		this.http.post('/chart/comment_threads', { data });
 
-	respondToCommentThread: ChartApiClient['respondToCommentThread'] = (
-		threadId: string,
-		data: RespondToCommentThreadRequestData,
-	) =>
+	respondToCommentThread: ChartApiClient['respondToCommentThread'] = (threadId, data) =>
 		this.http.post(`/chart/comment_threads/${threadId}/respond`, {
 			data,
 		});
