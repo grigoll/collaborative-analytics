@@ -4,6 +4,8 @@ export type HttpVerbOptions = {
 
 	// For simplicity request data is assumed to always be JSON across this project
 	data?: Record<string, unknown>;
+
+	signal?: AbortSignal | null;
 };
 
 export type HttpRequestOptions = HttpVerbOptions & {

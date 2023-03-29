@@ -13,7 +13,7 @@ export class HttpClientImpl implements HttpClient {
 
 	private request = async <TReturn>(url: string, opts: HttpRequestOptions): Promise<TReturn> => {
 		try {
-			const { method, data, headers: _headers } = opts;
+			const { method, data, signal, headers: _headers } = opts;
 
 			// Since our BE always expects data in JSON we just keep it simple here and always send it as JSON
 			const headers = data ? { 'content-type': 'application/json', ..._headers } : _headers;
@@ -23,10 +23,14 @@ export class HttpClientImpl implements HttpClient {
 				method,
 				headers,
 				body,
+				signal,
 			});
 
 			if (!response.ok) {
-				throw new HttpError(`${response.status}, response: ${await response.text()}`);
+				throw new HttpError(
+					response.status,
+					`${response.statusText}, response: ${await response.text()}`,
+				);
 			}
 
 			const result = hasJsonContentType(response)

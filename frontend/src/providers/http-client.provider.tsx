@@ -1,7 +1,7 @@
 import { createContext, FC, PropsWithChildren, useContext } from 'react';
 import { HttpClient } from '@/libs/http/client.interface';
 import { httpClient } from '@/libs/http/shared';
-import { assertContextValue } from '@/utils/assertions';
+import { assertContextValue } from '@/utils';
 
 const ctx = createContext<HttpClient | null>(null);
 

@@ -1,6 +1,6 @@
 import { createContext, FC, PropsWithChildren, useContext } from 'react';
 import { Logger, logger } from '@/libs/logger';
-import { assertContextValue } from '@/utils/assertions';
+import { assertContextValue } from '@/utils';
 
 const ctx = createContext<Logger | null>(null);
 

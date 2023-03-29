@@ -1,7 +1,7 @@
 import { createContext, FC, PropsWithChildren, useContext } from 'react';
 import { ChartApiClient } from '@/libs/api/chart-client.interface';
 import { chartApiClient } from '@/libs/api/shared';
-import { assertContextValue } from '@/utils/assertions';
+import { assertContextValue } from '@/utils';
 
 const ctx = createContext<ChartApiClient | null>(null);
 

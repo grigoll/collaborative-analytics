@@ -6,11 +6,19 @@ export class ChartApiClientImpl implements ChartApiClient {
 
 	getChartData: ChartApiClient['getChartData'] = () => this.http.get('/chart/data');
 
+	/**
+	 * Get existing comment threads
+	 * @returns comment threads (each includes only metadata, no comments)
+	 */
 	getCommentThreads: ChartApiClient['getCommentThreads'] = () =>
 		this.http.get('/chart/comment_threads');
 
-	getCommentThread: ChartApiClient['getCommentThread'] = (threadId) =>
-		this.http.get(`/chart/comment_threads/${threadId}`);
+	/**
+	 * Get comment thread
+	 * @returns comment thread with metadata and comments)
+	 */
+	getCommentThread: ChartApiClient['getCommentThread'] = (threadId, opts) =>
+		this.http.get(`/chart/comment_threads/${threadId}`, opts);
 
 	createCommentThread: ChartApiClient['createCommentThread'] = (data) =>
 		this.http.post('/chart/comment_threads', { data });

@@ -1,11 +1,18 @@
 import { useCallback, useMemo } from 'react';
 import { AxisProps } from '@nivo/axes';
 import { BarDatum, BarSvgProps, LegendLabelDatum, ResponsiveBar } from '@nivo/bar';
-import { capitalize } from '@/utils/string';
+import { capitalize } from '@/utils';
 
 export type BarChartProps<T extends BarDatum> = Pick<
 	BarSvgProps<T>,
-	'data' | 'keys' | 'indexBy' | 'barComponent' | 'colors' | 'axisBottom' | 'axisLeft'
+	| 'data'
+	| 'keys'
+	| 'indexBy'
+	| 'barComponent'
+	| 'colors'
+	| 'axisBottom'
+	| 'axisLeft'
+	| 'labelTextColor'
 >;
 
 export const BarChart = <T extends BarDatum>({
@@ -14,6 +21,7 @@ export const BarChart = <T extends BarDatum>({
 	indexBy,
 	colors,
 	barComponent,
+	labelTextColor,
 	axisLeft: _axisLeft,
 	axisBottom: _axisBottom,
 }: BarChartProps<T>) => {
@@ -40,10 +48,7 @@ export const BarChart = <T extends BarDatum>({
 	);
 
 	const borderColor = useMemo<BarSvgProps<T>['borderColor']>(
-		() => ({
-			from: 'color',
-			modifiers: [['opacity', 0.5]],
-		}),
+		() => ({ from: 'color', modifiers: [['opacity', 0.5]] }),
 		[],
 	);
 
@@ -56,11 +61,13 @@ export const BarChart = <T extends BarDatum>({
 				anchor: 'bottom',
 				direction: 'row',
 				translateY: 60,
+				translateX: 10,
 				itemHeight: 20,
-				itemWidth: 80,
-				itemsSpacing: 10,
+				itemWidth: 75,
+				itemsSpacing: 8,
 				symbolSize: 15,
 				symbolShape: 'circle',
+				toggleSerie: true,
 			},
 		],
 		[],
@@ -80,6 +87,7 @@ export const BarChart = <T extends BarDatum>({
 				borderColor,
 				axisLeft,
 				axisBottom,
+				labelTextColor,
 			}}
 			borderRadius={1}
 			borderWidth={1}

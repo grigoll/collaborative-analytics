@@ -1,3 +1,4 @@
+import { HttpVerbOptions } from '../http/types';
 import {
 	ChartCommentThreadResponse,
 	ChartCommentThreadsResponse,
@@ -12,7 +13,10 @@ export interface ChartApiClient {
 
 	getCommentThreads: () => Promise<ChartCommentThreadsResponse>;
 
-	getCommentThread: (threadId: string) => Promise<ChartCommentThreadResponse>;
+	getCommentThread: (
+		threadId: string,
+		opts?: HttpVerbOptions,
+	) => Promise<ChartCommentThreadResponse>;
 
 	createCommentThread: (
 		data: CreateCommentThreadRequestData,
