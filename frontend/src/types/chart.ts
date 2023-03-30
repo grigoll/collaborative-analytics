@@ -32,3 +32,7 @@ export type ChartComment = {
 	userName: string;
 	text: string;
 };
+
+export type ChartCommentThreadWithComments = ChartCommentThread & {
+	comments: ChartComment[];
+};
