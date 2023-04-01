@@ -1,8 +1,3 @@
-# Calliper frontend take-home task
-
-In this task you're presented with an API backend of chart data, comments and sharing.
-The task is to build a frontend that displays the chart and allows users to add comments and share the chart.
-
 ## Running the backend
 
 ### Pre-requisites
@@ -55,23 +50,23 @@ Backend API runs on http://localhost:8000
 ```typescript
 type ChartDataFeature = 'hotdog' | 'burger' | 'sandwitch' | 'kebab' | 'fries' | 'donut';
 
-type Country = 'FR' | 'GB' | 'BE' | 'DE' | 'ES' | 'IT'
+type Country = 'FR' | 'GB' | 'BE' | 'DE' | 'ES' | 'IT';
 
 type ChartDataPoint = {
   feature: ChartDataFeature;
   country: Country;
-}
+};
 
 type CommentThread = {
   id: string;
   comments_count: number;
   chart_data_point: ChartDataPoint[];
-}
+};
 
 type Comment = {
   user_name: string;
   text: string;
-}
+};
 ```
 
 ### `GET /chart/data`
@@ -82,17 +77,16 @@ Returns chart data formatted to be ready-for-consumption.
 type ChartDataResponse = {
   country: Country;
   [key: ChartDataFeature]: number;
-}[]
+}[];
 ```
 
 ### `GET /chart/comment_threads`
 
-Returns a list of comment threads, 
+Returns a list of comment threads,
 
 ```typescript
-type CommentThreadsResponse = CommentThread[]
+type CommentThreadsResponse = CommentThread[];
 ```
-
 
 ### `GET /chart/comment_threads/:thread_id`
 
@@ -100,10 +94,9 @@ Returns a list of comments in a thread
 
 ```typescript
 type CommentThreadResponse = CommentThread & {
-    comments: Comment[];
-}
+  comments: Comment[];
+};
 ```
-
 
 ### `POST /chart/comment_threads`
 
@@ -113,8 +106,8 @@ Creates a new comment thread, responds with `CommentThreadResponse`
 type CreateThreadRequest = {
   comment: Comment;
   data_point: ChartDataPoint;
-}
-``
+};
+``;
 ```
 
 ### `POST /chart/comment_threads/:thread_id/respond`
@@ -124,8 +117,8 @@ Posts a new comment to a thread, responds with `CommentThreadResponse`
 ```typescript
 type RespondToCommentThreadRequest = {
   comment: Comment;
-}
-``
+};
+``;
 ```
 
 ### `GET /share`
@@ -135,10 +128,9 @@ Returns a shareable link for a chart
 ```typescript
 type ShareResponse = {
   token: string;
-}
+};
 ```
 
 ### `GET /chart/shared/:share_id`
 
 Returns chart data by token, responds with `ChartDataResponse`
-

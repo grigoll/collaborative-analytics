@@ -146,5 +146,12 @@ export const useGlobalStore = create<GlobalStore>()(
 			});
 			logger.debug('Updated store with latest comments', { updatedThread });
 		},
+
+		resetStore: async () => {
+			set(initialState, true);
+			logger.debug('Store state was reset', { initialState });
+		},
 	})),
 );
+
+const initialState = useGlobalStore.getState();

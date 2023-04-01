@@ -22,4 +22,5 @@ export type GlobalStoreActions = {
 	showCommentThread: (threadKey: ChartDataPointKey) => Promise<void>;
 	loadThreadComments: (threadKey: ChartDataPointKey) => Promise<void>;
 	postCommentToThread: (data: ChartComment) => Promise<void>;
+	resetStore: () => Promise<void>;
 };

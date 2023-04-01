@@ -10,6 +10,7 @@ import { SharedPage } from './pages/shared';
 import { ChartApiClientProvider } from './providers/chart-api-client.provider';
 import { HttpClientProvider } from './providers/http-client.provider';
 import { MonitoringProvider } from './providers/monitoring.provider';
+import { useGlobalStore } from './store/chart.store';
 
 const Router = () => (
 	<Switch>
@@ -23,7 +24,9 @@ const Router = () => (
 );
 
 const App = () => (
-	<ErrorBoundary FallbackComponent={ErrorGlobalFallback}>
+	<ErrorBoundary
+		FallbackComponent={ErrorGlobalFallback}
+		onReset={useGlobalStore.getState().resetStore}>
 		<MonitoringProvider>
 			<ErrorGlobalMonitor />
 
